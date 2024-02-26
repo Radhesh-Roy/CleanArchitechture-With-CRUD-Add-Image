@@ -1,0 +1,40 @@
+﻿@model IEnumerable<CleanArchitechture.Application.ViewModel.StudentVm>
+@{
+}
+
+<div class="container">
+    <h2 class="text-center">Student Details</h2>
+
+    <a asp-action="CreateOrEdit" asp-controller="Student" class=" btn btn-outline-primary my-2">Add Student</a>
+    <table class="table table-bordered table-responsive shadow">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Email</th>
+                <th>Photo</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var student in Model)
+            {
+                <tr>
+                    <td>@student.Id</td>
+                    <td>@student.Name</td>
+                    <td>@student.Phone</td>
+                    <td>@student.Address</td>
+                    <td>@student.Email</td>
+                    <td><img class="img-thumbnail" width="50" src="~/Images/Student/@student.Images" /></td>
+                    <td>
+                        <a asp-action="CreateOrEdit" asp-controller="Student" asp-route-id="@student.Id" class="btn btn-outline-primary">Edit</a>
+                        <a asp-action="Details" asp-controller="Student" asp-route-id="@student.Id" class="btn btn-outline-info">Details</a>
+                        <a asp-action="Delete" asp-controller="Student" asp-route-id="@student.Id" onclick="return confirm('Are you sure Delete this!')" class="btn btn-outline-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
